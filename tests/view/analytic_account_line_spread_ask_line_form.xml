@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+     copyright notices and license terms. -->
+<form string="Spread Analytic Lines Wizard">
+    <label name="account"/>
+    <field name="account"/>
+    <label name="amount"/>
+    <field name="amount"/>
+    <label name="ask"/>
+    <field name="ask"/>
+    <label name="company"/>
+    <field name="company"/>
+    <label name="currency_digits"/>
+    <field name="currency_digits"/>
+    <label name="root"/>
+    <field name="root"/>
+</form>

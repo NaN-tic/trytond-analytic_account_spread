@@ -1,0 +1,107 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:analytic_account.line.spread.ask,amount:"
+msgid "Amount"
+msgstr "Import"
+
+msgctxt "field:analytic_account.line.spread.ask,company:"
+msgid "Company"
+msgstr "Empresa"
+
+msgctxt "field:analytic_account.line.spread.ask,currency:"
+msgid "Currency"
+msgstr "Moneda"
+
+msgctxt "field:analytic_account.line.spread.ask,currency_digits:"
+msgid "Currency Digits"
+msgstr "Dígits de la moneda"
+
+msgctxt "field:analytic_account.line.spread.ask,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:analytic_account.line.spread.ask,lines:"
+msgid "Lines"
+msgstr "Línies"
+
+msgctxt "field:analytic_account.line.spread.ask,move_line:"
+msgid "Account Move Line"
+msgstr "Apunt comptable"
+
+msgctxt "field:analytic_account.line.spread.ask,pending_amount:"
+msgid "Pending Amount"
+msgstr "Import pendent"
+
+msgctxt "field:analytic_account.line.spread.ask,root:"
+msgid "Root Account"
+msgstr "Compte arrel"
+
+msgctxt "field:analytic_account.line.spread.ask,roots:"
+msgid "Root Accounts"
+msgstr "Comptes arrel"
+
+msgctxt "field:analytic_account.line.spread.ask.line,account:"
+msgid "Account"
+msgstr "Compte"
+
+msgctxt "field:analytic_account.line.spread.ask.line,amount:"
+msgid "Amount"
+msgstr "Import"
+
+msgctxt "field:analytic_account.line.spread.ask.line,ask:"
+msgid "Ask Wizard"
+msgstr "Assistent"
+
+msgctxt "field:analytic_account.line.spread.ask.line,company:"
+msgid "Company"
+msgstr "Empresa"
+
+msgctxt "field:analytic_account.line.spread.ask.line,currency_digits:"
+msgid "Currency Digits"
+msgstr "Dígits de la moneda"
+
+msgctxt "field:analytic_account.line.spread.ask.line,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:analytic_account.line.spread.ask.line,root:"
+msgid "Root Account"
+msgstr "Compte arrel"
+
+msgctxt "model:analytic_account.line.spread.ask,name:"
+msgid "Spread Analytic Lines Ask"
+msgstr "Distrubueix linies analítquies "
+
+msgctxt "model:analytic_account.line.spread.ask.line,name:"
+msgid "Spread Analytic Lines Ask Line"
+msgstr "Linia de Distrubueix linies analítquies "
+
+msgctxt "model:ir.action,name:spread_wizard"
+msgid "Spread Analytic Lines"
+msgstr "Distribueix linies analítiques"
+
+msgctxt "view:account.move.line:"
+msgid "Analytic Lines"
+msgstr "Línies analítiques"
+
+msgctxt "view:analytic_account.line.spread.ask.line:"
+msgid "Spread Analytic Lines Line"
+msgstr "Linia de Distrubueix linies analítquies "
+
+msgctxt "view:analytic_account.line.spread.ask:"
+msgid "Spread Analytic Lines"
+msgstr "Linia de Distrubueix linies analítquies "
+
+msgctxt "wizard_button:analytic_account.line.spread,ask,end:"
+msgid "Cancel"
+msgstr "Cancel·la"
+
+msgctxt "wizard_button:analytic_account.line.spread,ask,next_:"
+msgid "Skip"
+msgstr "Salta"
+
+msgctxt "wizard_button:analytic_account.line.spread,ask,spread:"
+msgid "Spread"
+msgstr "Distribueix"

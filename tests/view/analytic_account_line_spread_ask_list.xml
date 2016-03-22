@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+     copyright notices and license terms. -->
+<tree string="Spread Analytic Lines Wizard">
+    <field name="amount"/>
+    <field name="company"/>
+    <field name="currency"/>
+    <field name="currency_digits"/>
+    <field name="lines"/>
+    <field name="move_line"/>
+    <field name="pending_amount"/>
+    <field name="root"/>
+    <field name="roots"/>
+</tree>

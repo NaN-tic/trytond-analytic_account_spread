@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The COPYRIGHT file at the top level of this repository contains the full
+     copyright notices and license terms. -->
+<tryton>
+    <data>
+        <record model="ir.ui.view" id="spread_ask_view_form">
+            <field name="model">analytic_account.line.spread.ask</field>
+            <field name="type">form</field>
+            <field name="name">spread_ask_form</field>
+        </record>
+        <record model="ir.ui.view" id="spread_ask_line_view_form">
+            <field name="model">analytic_account.line.spread.ask.line</field>
+            <field name="type">form</field>
+            <field name="name">spread_ask_line_form</field>
+        </record>
+        <record model="ir.ui.view" id="spread_ask_line_view_list">
+            <field name="model">analytic_account.line.spread.ask.line</field>
+            <field name="type">tree</field>
+            <field name="name">spread_ask_line_list</field>
+        </record>
+
+        <record model="ir.action.wizard" id="spread_wizard">
+            <field name="name">Spread Analytic Lines</field>
+            <field name="wiz_name">analytic_account.line.spread</field>
+            <field name="model">account.move.line</field>
+        </record>
+
+        <record model="ir.ui.view" id="move_line_view_tree">
+            <field name="model">account.move.line</field>
+            <field name="type">tree</field>
+            <field name="name">move_line_tree</field>
+            <field name="inherit" ref="account.move_line_view_tree"/>
+        </record>
+
+        <record model="ir.ui.view" id="move_line_view_tree_move">
+            <field name="model">account.move.line</field>
+            <field name="type">tree</field>
+            <field name="inherit" ref="account.move_line_view_tree_move"/>
+            <field name="name">move_line_tree</field>
+        </record>
+
+    </data>
+</tryton>
