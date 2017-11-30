@@ -2,6 +2,10 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
+msgctxt "error:analytic_account.line.spread:"
+msgid "The spreading is not correct. Remaining amount: %s"
+msgstr "La distribució no és correcte. Import pendent: %s"
+
 msgctxt "field:analytic_account.line.spread.ask,amount:"
 msgid "Amount"
 msgstr "Import"
