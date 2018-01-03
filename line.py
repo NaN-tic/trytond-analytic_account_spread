@@ -166,6 +166,14 @@ class SpreadWizard(Wizard):
             ])
     spread = StateTransition()
 
+    @classmethod
+    def __setup__(cls):
+        super(SpreadWizard, cls).__setup__()
+        cls._error_messages.update({
+                'incorrect_spreading': ('The spreading is not correct. '
+                    'Remaining amount: %s'),
+                })
+
     def get_roots(self):
         'Return a list of roots to spread'
         pool = Pool()
@@ -236,6 +244,11 @@ class SpreadWizard(Wizard):
     def transition_spread(self):
         pool = Pool()
         Line = pool.get('analytic_account.line')
+
+        if self.ask.pending_amount != 0:
+            self.raise_user_error('incorrect_spreading',
+                self.ask.pending_amount)
+
         linesbyaccount = dict((l.account, l) for l
             in self.ask.move_line.analytic_lines)
         to_create, to_write = [], []
