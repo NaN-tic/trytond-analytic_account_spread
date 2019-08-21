@@ -27,16 +27,20 @@
 
         <record model="ir.ui.view" id="move_line_view_tree">
             <field name="model">account.move.line</field>
-            <field name="type">tree</field>
             <field name="name">move_line_tree</field>
             <field name="inherit" ref="account.move_line_view_tree"/>
         </record>
 
         <record model="ir.ui.view" id="move_line_view_tree_move">
             <field name="model">account.move.line</field>
-            <field name="type">tree</field>
             <field name="inherit" ref="account.move_line_view_tree_move"/>
             <field name="name">move_line_tree</field>
+        </record>
+
+        <record model="ir.model.button" id="move_line_spread_analytic_button">
+            <field name="name">spread_analytic</field>
+            <field name="string">Analytic Lines</field>
+            <field name="model" search="[('model', '=', 'account.move.line')]"/>
         </record>
 
     </data>

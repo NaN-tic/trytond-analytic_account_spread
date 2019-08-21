@@ -6,10 +6,11 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateTransition, StateView, Button
+from trytond.exceptions import UserError
+from trytond.i18n import gettext
 
 __all__ = ['SpreadAsk', 'SpreadAskLine', 'SpreadWizard', 'MoveLine']
-__metaclass__ = PoolMeta
-
+ZERO = Decimal(0)
 
 class SpreadAskLine(ModelView):
     'Spread Analytic Lines Ask Line'
@@ -64,17 +65,17 @@ class SpreadAskLine(ModelView):
         pool = Pool()
         Line = pool.get('analytic_account.line')
         line = Line()
-        for key, value in defaults.iteritems():
+        for key, value in defaults.items():
             setattr(line, key, value)
 
         line.name = self.account.rec_name
         line.account = self.account
-        if self.amount > Decimal(0):
+        if self.amount > ZERO:
             line.credit = self.amount
-            line.debit = Decimal(0)
+            line.debit = ZERO
         else:
             line.debit = abs(self.amount)
-            line.credit = Decimal(0)
+            line.credit = ZERO
         return line
 
 
@@ -145,9 +146,8 @@ class SpreadAsk(ModelView):
 
     @fields.depends('lines', 'amount', 'currency')
     def on_change_with_pending_amount(self, name=None):
-        lines_amount = sum((l.amount or Decimal(0) for l in self.lines),
-            Decimal(0))
-        amount = self.amount - lines_amount
+        lines_amount = sum((l.amount or ZERO for l in self.lines), ZERO)
+        amount = (self.amount or ZERO) - lines_amount
         if self.currency:
             amount = self.currency.round(amount)
         return amount
@@ -165,14 +165,6 @@ class SpreadWizard(Wizard):
             Button('Spread', 'spread', 'tryton-ok', default=True),
             ])
     spread = StateTransition()
-
-    @classmethod
-    def __setup__(cls):
-        super(SpreadWizard, cls).__setup__()
-        cls._error_messages.update({
-                'incorrect_spreading': ('The spreading is not correct. '
-                    'Remaining amount: %s'),
-                })
 
     def get_roots(self):
         'Return a list of roots to spread'
@@ -246,15 +238,15 @@ class SpreadWizard(Wizard):
         Line = pool.get('analytic_account.line')
 
         if self.ask.pending_amount != 0:
-            self.raise_user_error('incorrect_spreading',
-                self.ask.pending_amount)
+            raise UserError(gettext(
+                    'analytic_account_spread.msg_incorrect_spreading',
+                    amount=self.ask.pending_amount))
 
         linesbyaccount = dict((l.account, l) for l
             in self.ask.move_line.analytic_lines)
         to_create, to_write = [], []
         line_defaults = {
             'move_line': self.ask.move_line,
-            'journal': self.ask.move_line.move.journal,
             'date': self.ask.move_line.date,
             'party': self.ask.move_line.party,
             }
@@ -263,12 +255,12 @@ class SpreadWizard(Wizard):
                 line = linesbyaccount.pop(value.account)
                 line_amount = line.credit - line.debit
                 if value.amount != line_amount:
-                    if value.amount > Decimal(0):
+                    if value.amount > ZERO:
                         line.credit = value.amount
-                        line.debit = Decimal(0)
+                        line.debit = ZERO
                     else:
                         line.debit = abs(value.amount)
-                        line.credit = Decimal(0)
+                        line.credit = ZERO
                     to_write.extend(([line], line._save_values))
             else:
                 line = value.get_analytic_line(line_defaults)
@@ -283,7 +275,7 @@ class SpreadWizard(Wizard):
         return 'next_'
 
 
-class MoveLine:
+class MoveLine(metaclass=PoolMeta):
     __name__ = 'account.move.line'
 
     @classmethod

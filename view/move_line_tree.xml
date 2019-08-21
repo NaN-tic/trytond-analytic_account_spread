@@ -3,6 +3,6 @@
      copyright notices and license terms. -->
  <data>
     <xpath expr="/tree/field[@name='tax_lines']" position="after">
-        <button name="spread_analytic" string="Analytic Lines"/>
+        <button name="spread_analytic"/>
     </xpath>
 </data>
