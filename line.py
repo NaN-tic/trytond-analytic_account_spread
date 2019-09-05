@@ -161,7 +161,7 @@ class SpreadWizard(Wizard):
     ask = StateView('analytic_account.line.spread.ask',
         'analytic_account_spread.spread_ask_view_form', [
             Button('Cancel', 'end', 'tryton-cancel'),
-            Button('Skip', 'next_', 'tryton-go-next'),
+            Button('Skip', 'next_', 'tryton-forward'),
             Button('Spread', 'spread', 'tryton-ok', default=True),
             ])
     spread = StateTransition()
