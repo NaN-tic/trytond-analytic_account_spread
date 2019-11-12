@@ -50,12 +50,12 @@ class SpreadAskLine(ModelView):
     def default_amount():
         return Transaction().context.get('pending_amount')
 
-    @fields.depends('ask')
+    @fields.depends('ask', '_parent_ask.company')
     def on_change_with_company(self, name=None):
         if self.ask:
             return self.ask.company.id
 
-    @fields.depends('ask')
+    @fields.depends('_parent_ask.id', 'ask')
     def on_change_with_currency_digits(self, name=None):
         if self.ask:
             return self.ask.currency_digits
@@ -68,7 +68,6 @@ class SpreadAskLine(ModelView):
         for key, value in defaults.items():
             setattr(line, key, value)
 
-        line.name = self.account.rec_name
         line.account = self.account
         if self.amount > ZERO:
             line.credit = self.amount
@@ -128,7 +127,7 @@ class SpreadAsk(ModelView):
             ],
         depends=['root', 'pending_amount'])
 
-    @fields.depends('move_line')
+    @fields.depends('move_line','company')
     def on_change_with_company(self, name=None):
         if self.move_line:
             return self.move_line.account.company.id
@@ -248,7 +247,6 @@ class SpreadWizard(Wizard):
         line_defaults = {
             'move_line': self.ask.move_line,
             'date': self.ask.move_line.date,
-            'party': self.ask.move_line.party,
             }
         for value in self.ask.lines:
             if value.account in linesbyaccount:
