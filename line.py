@@ -55,7 +55,7 @@ class SpreadAskLine(ModelView):
         if self.ask:
             return self.ask.company.id
 
-    @fields.depends('_parent_ask.id', 'ask')
+    @fields.depends('_parent_ask.currency_digits', 'ask')
     def on_change_with_currency_digits(self, name=None):
         if self.ask:
             return self.ask.currency_digits
