@@ -89,7 +89,7 @@ class SpreadAsk(ModelView):
     currency_digits = fields.Function(fields.Integer('Currency Digits'),
         'on_change_with_currency_digits')
     company = fields.Function(fields.Many2One('company.company', 'Company'),
-        'on_change_with_company')
+       'on_change_with_company')
     roots = fields.One2Many('analytic_account.account', None, 'Root Accounts',
         required=True,
         domain=[
@@ -127,7 +127,7 @@ class SpreadAsk(ModelView):
             ],
         depends=['root', 'pending_amount'])
 
-    @fields.depends('move_line','company')
+    @fields.depends('move_line')
     def on_change_with_company(self, name=None):
         if self.move_line:
             return self.move_line.account.company.id
