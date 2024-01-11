@@ -25,8 +25,7 @@ class SpreadAskLine(ModelView):
                 ('company', '=', None),
                 ('company', '=', Eval('company', -1)),
                 ],
-            ],
-        depends=['company'])
+            ])
     account = fields.Many2One('analytic_account.account', 'Account',
         required=True,
         domain=[
@@ -36,8 +35,7 @@ class SpreadAskLine(ModelView):
                 ('company', '=', None),
                 ('company', '=', Eval('company', -1)),
                 ],
-            ],
-        depends=['company', 'root'])
+            ])
     company = fields.Function(fields.Many2One('company.company', 'Company'),
         'on_change_with_company')
     currency_digits = fields.Function(fields.Integer('Currency Digits'),
@@ -98,8 +96,7 @@ class SpreadAsk(ModelView):
                 ('company', '=', None),
                 ('company', '=', Eval('company', -1)),
                 ],
-            ],
-        depends=['company'])
+            ])
     root = fields.Many2One('analytic_account.account', 'Root Account',
         required=True, readonly=True,
         domain=[
@@ -108,8 +105,7 @@ class SpreadAsk(ModelView):
                 ('company', '=', None),
                 ('company', '=', Eval('company', -1)),
                 ],
-            ],
-        depends=['company'])
+            ])
     amount = fields.Numeric('Amount', readonly=True,
         digits=(16, Eval('currency_digits', 2)),
         depends=['currency_digits'])
@@ -125,7 +121,7 @@ class SpreadAsk(ModelView):
         domain=[
             ('root', '=', Eval('root', 0)),
             ],
-        depends=['root', 'pending_amount'])
+        depends=['pending_amount'])
 
     @fields.depends('move_line')
     def on_change_with_company(self, name=None):
