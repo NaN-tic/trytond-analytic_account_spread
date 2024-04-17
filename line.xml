@@ -40,7 +40,7 @@
         <record model="ir.model.button" id="move_line_spread_analytic_button">
             <field name="name">spread_analytic</field>
             <field name="string">Analytic Lines</field>
-            <field name="model" search="[('model', '=', 'account.move.line')]"/>
+            <field name="model">account.move.line</field>
         </record>
 
     </data>
