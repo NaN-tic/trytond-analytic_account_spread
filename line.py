@@ -255,11 +255,11 @@ class SpreadWizard(Wizard):
                     else:
                         line.debit = abs(value.amount)
                         line.credit = ZERO
-                    to_write.extend(([line], line._save_values))
+                    to_write.extend(([line], line._save_values()))
             else:
                 line = value.get_analytic_line(line_defaults)
                 if line:
-                    to_create.append(line._save_values)
+                    to_create.append(line._save_values())
         if to_create:
             Line.create(to_create)
         if to_write:
